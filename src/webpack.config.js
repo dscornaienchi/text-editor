@@ -5,18 +5,18 @@ const path = require('path');
 
 module.exports = () => {
   return {
-    mode: 'development', // or 'production' for minified builds
+    mode: 'development',
     entry: {
       main: './js/index.js',
       install: './js/install.js',
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'), // Adjust the output path as needed
+      path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: 'index.html', // Adjust the path to your HTML template
+        template: 'index.html',
         chunks: ['main'],
       }),
       new WebpackPwaManifest({
@@ -27,19 +27,18 @@ module.exports = () => {
         theme_color: '#000000',
         icons: [
           {
-            src: path.resolve('./images/logo.png'), // Adjust the path to your app icon
+            src: path.resolve('./images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
           },
         ],
       }),
       new InjectManifest({
-        swSrc: './src-sw.js', // Adjust the path to your service worker file
+        swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
     ],
     module: {
       rules: [
-        // Add your Babel and CSS loader configurations if needed
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
@@ -58,4 +57,6 @@ module.exports = () => {
     },
   };
 };
+
+
 

@@ -1,9 +1,9 @@
 import { offlineFallback, warmStrategyCache } from 'workbox-recipes';
-import { CacheFirst } from 'workbox-strategies';
-import { registerRoute } from 'workbox-routing';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst } from 'workbox-strategies';
 
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -18,6 +18,20 @@ const pageCache = new CacheFirst({
     }),
   ],
 });
+
+// Use the CacheFirst strategy for assets like images, JS, and CSS files
+registerRoute(
+  /\.(?:png|js|css)$/,
+  new CacheFirst({
+    cacheName: 'assets-cache',
+    plugins: [
+      // Configure cache expiration
+      new ExpirationPlugin({
+        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+      }),
+    ],
+  })
+);
 
 warmStrategyCache({
   urls: ['/index.html', '/'],
