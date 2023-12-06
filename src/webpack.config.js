@@ -7,8 +7,8 @@ module.exports = () => {
   return {
     mode: 'development', // or 'production' for minified builds
     entry: {
-      main: './client/src/js/index.js',
-      install: './client/src/js/install.js',
+      main: './js/index.js',
+      install: './js/install.js',
     },
     output: {
       filename: '[name].bundle.js',
@@ -16,7 +16,7 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './client/src/index.html', // Adjust the path to your HTML template
+        template: 'index.html', // Adjust the path to your HTML template
         chunks: ['main'],
       }),
       new WebpackPwaManifest({
@@ -27,14 +27,14 @@ module.exports = () => {
         theme_color: '#000000',
         icons: [
           {
-            src: path.resolve('./client/src/images/logo.png'), // Adjust the path to your app icon
+            src: path.resolve('./images/logo.png'), // Adjust the path to your app icon
             sizes: [96, 128, 192, 256, 384, 512],
           },
         ],
       }),
       new InjectManifest({
-        swSrc: './client/src-sw.js', // Adjust the path to your service worker file
-        swDest: 'service-worker.js',
+        swSrc: './src-sw.js', // Adjust the path to your service worker file
+        swDest: 'src-sw.js',
       }),
     ],
     module: {

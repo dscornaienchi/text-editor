@@ -1,6 +1,7 @@
 import { getDb, putDb } from './database';
 import { header } from './header';
-import CodeMirror from 'codemirror/lib/codemirror'; // Make sure to import CodeMirror
+//import CodeMirror from 'codemirror/lib/codemirror'; // Make sure to import CodeMirror
+//const CodeMirror = undefined;
 
 export default class {
   constructor() {
