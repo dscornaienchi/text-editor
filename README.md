@@ -19,7 +19,7 @@ The code included in this repository is used to create a text editor application
 
 The Github repository can be found here: https://github.com/dscornaienchi/text-editor
 
-The URL of the functional, deployed application can be found here:
+The URL of the functional, deployed application can be found here: https://text-editor-heoc.onrender.com 
 
 ## Credits
 
